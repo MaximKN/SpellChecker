@@ -16,6 +16,11 @@ public class SpellChecker implements ISpellChecker{
         this.wordsInDictionary = DictionaryLoader.loadDictionary(true, ownPath);
     }
 
+    /**
+     * Linear search algorithm
+     * @param word the word to be checked
+     * @return result of the search
+     */
     @Override
     public SpellCheckResult check(String word) {
         for (int j = 0; j < wordsInDictionary.length; j++) {
@@ -31,10 +36,24 @@ public class SpellChecker implements ISpellChecker{
         return new SpellCheckResult(false, wordsInDictionary[wordsInDictionary.length - 1], null);
     }
 
+    /**
+     * Implementation of the binary search algorithm
+     * Sub-method
+     * @param word given word by user
+     * @return pass word to the algorithm and return the result
+     */
     public SpellCheckResult bsCheck(String word){
         return bsCheck(word, 0, wordsInDictionary.length);
     }
 
+    /**
+     * Implementation of the binary search algorithm
+     * Main method
+     * @param word word typed by user
+     * @param low value needed for the binary search
+     * @param high value needed for the binary search
+     * @return result of the search or go deeper by the recursion
+     */
     public SpellCheckResult bsCheck(String word, int low, int high){
         if (high <= low) {
             if (low == 0){

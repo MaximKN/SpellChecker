@@ -15,6 +15,10 @@ public class SpellCheckerGUI extends JFrame {
     private StyledDocument doc = textPane.getStyledDocument();
     private Style style = textPane.addStyle("Style", null);
 
+    public static void main(String[] args){
+        new SpellCheckerGUI();
+    }
+
     public SpellCheckerGUI(){
         this.setAppearance();
         this.addTextArea();
@@ -22,13 +26,6 @@ public class SpellCheckerGUI extends JFrame {
         this.setVisible(true);
     }
 
-    public static void main(String[] args){
-        new SpellCheckerGUI();
-    }
-
-    /**
-     * This method sets all settings for the spell checker.
-     */
     public void setAppearance(){
         this.setTitle("Spell checker");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,11 +46,14 @@ public class SpellCheckerGUI extends JFrame {
         this.checkButton.setPreferredSize(new Dimension(520, 70));
         this.add(checkButton, BorderLayout.SOUTH);
         this.checkButton.setVisible(true);
+
         /* New lambda function */
         this.checkButton.addActionListener(de -> {
+
             String[] inputWords = parser.parse(this.textPane.getText());
             SpellCheckResult[] scResults = new SpellCheckResult[inputWords.length];
             this.textPane.setText(""); // Clear the text area
+
             for (int i = 0; i < inputWords.length; i++) {
                 scResults[i] = spellChecker.bsCheck(inputWords[i]);
                 if (!scResults[i].isCorrect()){
@@ -75,5 +75,4 @@ public class SpellCheckerGUI extends JFrame {
             }
         });
     }
-
 }

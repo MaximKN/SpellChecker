@@ -59,7 +59,7 @@ public class SpellCheckerUI {
                     System.out.println("Goodbye");
                     System.exit(0);
                 }
-                scResults[i] = spellChecker.bsCheck(inputWords[i]);
+                scResults[i] = spellChecker.check(inputWords[i]); // linear search
                 if (scResults[i].isCorrect()){
                     System.out.println(inputWords[i] + " correct");
                 }
