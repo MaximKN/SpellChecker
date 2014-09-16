@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class SpellCheckerUI {
 
     public static void main(String[] args) throws IOException, InterruptedException{
-        new SpellCheckerGUI();  // Optional GUI
         Scanner scanner = new Scanner(System.in);
         SpellCheckerParser parser = new SpellCheckerParser();
         SpellChecker spellChecker = null;
@@ -60,7 +59,7 @@ public class SpellCheckerUI {
                     System.out.println("Goodbye");
                     System.exit(0);
                 }
-                scResults[i] = spellChecker.check(inputWords[i]);
+                scResults[i] = spellChecker.bsCheck(inputWords[i]);
                 if (scResults[i].isCorrect()){
                     System.out.println(inputWords[i] + " correct");
                 }

@@ -30,4 +30,26 @@ public class SpellChecker implements ISpellChecker{
         }
         return new SpellCheckResult(false, wordsInDictionary[wordsInDictionary.length - 1], null);
     }
+
+    public SpellCheckResult bsCheck(String word){
+        return bsCheck(word, 0, wordsInDictionary.length);
+    }
+
+    public SpellCheckResult bsCheck(String word, int low, int high){
+        if (high <= low) {
+            if (low == 0){
+                return new SpellCheckResult(false, null, wordsInDictionary[0]);
+            }
+            if (high == wordsInDictionary.length){
+                return new SpellCheckResult(false, wordsInDictionary[wordsInDictionary.length - 1], null);
+            }
+            return new SpellCheckResult(false, wordsInDictionary[low - 1], wordsInDictionary[low]);
+        }
+        int mid = low + (high - low) / 2;
+        int cmp = word.compareTo(wordsInDictionary[mid]);
+
+        if      (cmp < 0) return bsCheck(word, low, mid);
+        else if (cmp > 0) return bsCheck(word, mid + 1, high);
+        else              return new SpellCheckResult(true);
+    }
 }
