@@ -10,14 +10,14 @@ import uk.ac.standrews.cs2001.parser.*;
  * Graphical user interface used by SpellCheckerUI. It is another extension for this project.
  */
 public class SpellCheckerGUI extends JFrame {
-    private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    private final JTextArea errorConsole = new JTextArea();
-    private final JTextPane textPane = new JTextPane();
-    private final JButton checkButton = new JButton();
-    private final SpellCheckerParser parser = new SpellCheckerParser();
-    private final SpellChecker spellChecker = new SpellChecker();
-    private final StyledDocument doc = textPane.getStyledDocument();
-    private final Style style = textPane.addStyle("Style", null);
+    private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    private JTextArea errorConsole = new JTextArea();
+    private JTextPane textPane = new JTextPane();
+    private JButton checkButton = new JButton();
+    private SpellCheckerParser parser = new SpellCheckerParser();
+    private SpellChecker spellChecker = new SpellChecker();
+    private StyledDocument doc = textPane.getStyledDocument();
+    private Style style = textPane.addStyle("Style", null);
 
     public static void main(String[] args){
         SwingUtilities.invokeLater(SpellCheckerGUI::new);
@@ -27,7 +27,7 @@ public class SpellCheckerGUI extends JFrame {
      * Default constructor
      */
     public SpellCheckerGUI(){
-        this.redirectSystemStreams();
+        //this.redirectSystemStreams();
         this.setAppearance();
         this.addTextArea();
         this.addCheckButton();

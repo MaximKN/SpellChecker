@@ -47,33 +47,32 @@ class SpellCheckerUI {
         scanner.nextLine();
         System.out.println("OK. Please enter words to check. Enter \"quit\" to finish.");
 
-        System.out.print("Next word(s): ");
-        while (!scanner.hasNextLine()) scanner.next();
+        while (true) {
+            System.out.print("Next word(s): ");
+            while (!scanner.hasNextLine()) scanner.next();
 
-        String[] inputWords = parser.parse(scanner.nextLine());
-        if (inputWords == null)    System.exit(2);     // Quit application if there is a number
+            String[] inputWords = parser.parse(scanner.nextLine());
+            if (inputWords == null) System.exit(2);     // Quit application if there is a number
 
-        SpellCheckResult[] scResults = new SpellCheckResult[inputWords.length];
+            SpellCheckResult[] scResults = new SpellCheckResult[inputWords.length];
 
-        for (int i = 0; i < inputWords.length; i++) {
-            if (inputWords[i].equals("quit")) {
-                System.out.println("Goodbye");
-                System.exit(0);
-            }
-            scResults[i] = spellChecker.check(inputWords[i]); // linear search
-            if (scResults[i].isCorrect()){
-                System.out.println(inputWords[i] + " correct");
-            }
-            else{
-                if (scResults[i].getBefore() != null && scResults[i].getAfter() != null) {
-                System.out.println(inputWords[i] + " not found. Nearest neighbour(s): " + scResults[i].getBefore()
-                                                                              + " and " + scResults[i].getAfter());
+            for (int i = 0; i < inputWords.length; i++) {
+                if (inputWords[i].equals("quit")) {
+                    System.out.println("Goodbye");
+                    System.exit(0);
                 }
-                else if (scResults[i].getBefore() == null){
-                    System.out.println(inputWords[i] + " not found. Nearest neighbour(s): " + scResults[i].getAfter());
-                }
-                else if(scResults[i].getAfter() == null){
-                    System.out.println(inputWords[i] + " not found. Nearest neighbour(s): " + scResults[i].getBefore());
+                scResults[i] = spellChecker.check(inputWords[i]); // linear search
+                if (scResults[i].isCorrect()) {
+                    System.out.println(inputWords[i] + " correct");
+                } else {
+                    if (scResults[i].getBefore() != null && scResults[i].getAfter() != null) {
+                        System.out.println(inputWords[i] + " not found. Nearest neighbour(s): " + scResults[i].getBefore()
+                                + " and " + scResults[i].getAfter());
+                    } else if (scResults[i].getBefore() == null) {
+                        System.out.println(inputWords[i] + " not found. Nearest neighbour(s): " + scResults[i].getAfter());
+                    } else if (scResults[i].getAfter() == null) {
+                        System.out.println(inputWords[i] + " not found. Nearest neighbour(s): " + scResults[i].getBefore());
+                    }
                 }
             }
         }

@@ -87,30 +87,27 @@ public class SpellChecker implements ISpellChecker{
     public SpellCheckerSuggestion[] findSuggestions(String word){
         boolean notSorted = true;
         SpellCheckerSuggestion temp;
-        SpellCheckerSuggestion[] suggestions;
+        SpellCheckerSuggestion[] suggestions = new SpellCheckerSuggestion[10];
 
         int index = bsCheck(word).getIndex();
 
         // If word is at the beginning of a dictionary
         if (index <= 10){
-            suggestions = new SpellCheckerSuggestion[10 - index];
-            for (int i = 0; i < 10 - index; i++) {
+            for (int i = 0; i < 10; i++) {
                 suggestions[i] = new SpellCheckerSuggestion(wordsInDictionary[i], findNumOfSimilarChar(word, wordsInDictionary[i]));
             }
         }
         // If word is at the end of a dictionary
-        else if (index >= wordsInDictionary.length - 10) {
-            suggestions = new SpellCheckerSuggestion[wordsInDictionary.length - index];
-            for (int i = 0; i < wordsInDictionary.length - index; i++) {
-                suggestions[i] = new SpellCheckerSuggestion(wordsInDictionary[index-1+i], findNumOfSimilarChar(word, wordsInDictionary[index-1+i]));
+        else if (wordsInDictionary.length - index <= 10) {
+            for (int i = 0; i < 10; i++) {
+                suggestions[i] = new SpellCheckerSuggestion(wordsInDictionary[index-i-1], findNumOfSimilarChar(word, wordsInDictionary[index-i-1]));
             }
         }
         // If word is somewhere else
         else {
-            suggestions = new SpellCheckerSuggestion[20];
-            // Look up 10 words before and after the given word
-            for (int i = 0; i < 20; i++) {
-                suggestions[i] = new SpellCheckerSuggestion(wordsInDictionary[index - 10 + i], findNumOfSimilarChar(word, wordsInDictionary[index - 10 + i]));
+            // Look up 5 words before and after the given word
+            for (int i = 0; i < 10; i++) {
+                suggestions[i] = new SpellCheckerSuggestion(wordsInDictionary[index - 5 + i], findNumOfSimilarChar(word, wordsInDictionary[index - 5 + i]));
             }
         }
         // Sort suggestions using bubble sort to find the most suitable word
