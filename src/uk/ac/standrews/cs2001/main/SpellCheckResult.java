@@ -1,4 +1,4 @@
-package uk.ac.standrews.cs2001;
+package uk.ac.standrews.cs2001.main;
 
 /**
  * This is a class used by SpellChecker to return results.
@@ -8,27 +8,24 @@ package uk.ac.standrews.cs2001;
  */
 public class SpellCheckResult {
 
-    private boolean correct;
+    private final boolean correct;
     private String before;
     private String after;
 
     /**
      * Constructor for correct result
-     * @param result correct result expects true value
      */
-    public SpellCheckResult(boolean result) {
-        this.correct = result;
+    public SpellCheckResult() {
+        this.correct = true;
     }
 
     /**
      * Constructor for incorrect result
-     * @param result incorrect result expects false value
      * @param before the word before
      * @param after the word after
      */
-    public SpellCheckResult(boolean result, String before, String after) {
-
-        this.correct = result;
+    public SpellCheckResult(String before, String after) {
+        this.correct = false;
         this.before = before;
         this.after = after;
     }

@@ -1,4 +1,4 @@
-package uk.ac.standrews.cs2001;
+package uk.ac.standrews.cs2001.main;
 
 public interface ISpellChecker {
 

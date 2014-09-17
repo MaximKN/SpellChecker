@@ -1,4 +1,4 @@
-package uk.ac.standrews.cs2001;
+package uk.ac.standrews.cs2001.main;
 /**
  * This class stores the array of strings and provides a method check to search it.
  * @author  cs2001 student
@@ -6,7 +6,7 @@ package uk.ac.standrews.cs2001;
 
 public class SpellChecker implements ISpellChecker{
 
-    private String[] wordsInDictionary;
+    private final String[] wordsInDictionary;
 
     public SpellChecker(){
         this.wordsInDictionary = DictionaryLoader.loadDictionary(false, "default");
@@ -25,15 +25,15 @@ public class SpellChecker implements ISpellChecker{
     public SpellCheckResult check(String word) {
         for (int j = 0; j < wordsInDictionary.length; j++) {
             if (word.compareTo(wordsInDictionary[j]) == 0) {
-                return new SpellCheckResult(true);
+                return new SpellCheckResult();
             } else if (word.compareTo(wordsInDictionary[j]) < 0) {
                 if (j == 0) {
-                    return new SpellCheckResult(false, null, wordsInDictionary[j]);
+                    return new SpellCheckResult(null, wordsInDictionary[j]);
                 }
-                return new SpellCheckResult(false, wordsInDictionary[j - 1], wordsInDictionary[j]);
+                return new SpellCheckResult(wordsInDictionary[j - 1], wordsInDictionary[j]);
             }
         }
-        return new SpellCheckResult(false, wordsInDictionary[wordsInDictionary.length - 1], null);
+        return new SpellCheckResult(wordsInDictionary[wordsInDictionary.length - 1], null);
     }
 
     /**
@@ -57,18 +57,18 @@ public class SpellChecker implements ISpellChecker{
     public SpellCheckResult bsCheck(String word, int low, int high){
         if (high <= low) {
             if (low == 0){
-                return new SpellCheckResult(false, null, wordsInDictionary[0]);
+                return new SpellCheckResult(null, wordsInDictionary[0]);
             }
             if (high == wordsInDictionary.length){
-                return new SpellCheckResult(false, wordsInDictionary[wordsInDictionary.length - 1], null);
+                return new SpellCheckResult(wordsInDictionary[wordsInDictionary.length - 1], null);
             }
-            return new SpellCheckResult(false, wordsInDictionary[low - 1], wordsInDictionary[low]);
+            return new SpellCheckResult(wordsInDictionary[low - 1], wordsInDictionary[low]);
         }
         int mid = low + (high - low) / 2;
         int cmp = word.compareTo(wordsInDictionary[mid]);
 
         if      (cmp < 0) return bsCheck(word, low, mid);
         else if (cmp > 0) return bsCheck(word, mid + 1, high);
-        else              return new SpellCheckResult(true);
+        else              return new SpellCheckResult();
     }
 }

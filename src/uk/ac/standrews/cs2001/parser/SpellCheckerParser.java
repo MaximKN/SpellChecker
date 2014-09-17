@@ -1,4 +1,4 @@
-package uk.ac.standrews.cs2001;
+package uk.ac.standrews.cs2001.parser;
 
 /**
  * This class contains a parse method which splits the string into a individual words.
@@ -13,17 +13,18 @@ public class SpellCheckerParser {
 
         // Find numeric values in the array
         for(String s : inputWordsArray){
-            if (isInteger(s)) {
+            if (isNumerical(s)) {
                 System.err.println(s + " is a number. Please enter the word instead");
-                System.exit(2);
+                return null;
             }
         }
 
         return inputWordsArray;
     }
 
-    public static boolean isInteger(String s) {
+    public static boolean isNumerical(String s) {
         try {
+            //noinspection ResultOfMethodCallIgnored
             Double.parseDouble(s);
         } catch(NumberFormatException e) {
             return false;

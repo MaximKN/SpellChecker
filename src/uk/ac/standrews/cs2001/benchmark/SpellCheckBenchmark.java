@@ -1,9 +1,12 @@
-package uk.ac.standrews.cs2001;
+package uk.ac.standrews.cs2001.benchmark;
+
+import uk.ac.standrews.cs2001.main.*;
+import uk.ac.standrews.cs2001.parser.*;
 
 public class SpellCheckBenchmark {
 
-    private static SpellCheckerParser parser = new SpellCheckerParser();
-    private static SpellChecker spellChecker = new SpellChecker();
+    private static final SpellCheckerParser parser = new SpellCheckerParser();
+    private static final SpellChecker spellChecker = new SpellChecker();
     private static String[] inputWords;
     private static SpellCheckResult[] scResults;
     public static final String SMALL_TEXT = "computer zoothecia zoothecial " +
