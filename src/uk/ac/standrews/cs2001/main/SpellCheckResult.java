@@ -1,7 +1,7 @@
 package uk.ac.standrews.cs2001.main;
 
 /**
- * This is a class used by SpellChecker to return results.
+ * Used by SpellChecker to return results.
  * A SpellCheckResult object has public fields indicating whether the word was correctly spelt and,
  * if not, what were the words immediately before and after it.
  * If it was before the first dictionary entry or after the last one then one of these fields might be null.
@@ -11,6 +11,7 @@ public class SpellCheckResult {
     private final boolean correct;
     private String before;
     private String after;
+    private int index;
 
     /**
      * Constructor for correct result
@@ -24,8 +25,9 @@ public class SpellCheckResult {
      * @param before the word before
      * @param after the word after
      */
-    public SpellCheckResult(String before, String after) {
+    public SpellCheckResult(int index, String before, String after) {
         this.correct = false;
+        this.index = index;
         this.before = before;
         this.after = after;
     }
@@ -49,5 +51,12 @@ public class SpellCheckResult {
      */
     public String getAfter() {
         return after;
+    }
+
+    /**
+     * @return the index of the looking word
+     */
+    public int getIndex() {
+        return this.index;
     }
 }

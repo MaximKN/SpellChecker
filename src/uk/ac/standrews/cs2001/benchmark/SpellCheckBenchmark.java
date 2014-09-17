@@ -59,7 +59,10 @@ public class SpellCheckBenchmark {
         binarySearchLargeText();
     }
 
-    public static void linearSearchSmallText(){
+    /**
+     * Finds the time required to process the small text using linear search
+     */
+    public static long linearSearchSmallText(){
         inputWords = parser.parse(SMALL_TEXT);
         scResults = new SpellCheckResult[inputWords.length];
 
@@ -70,8 +73,13 @@ public class SpellCheckBenchmark {
         }
         long end = System.currentTimeMillis();
         System.out.println("It took " + (end - start) + " ms for the linear search to complete task for small text");
+        return end - start;
     }
-    public static void linearSearchLargeText(){
+
+    /**
+     * Finds the time required to process the large text using linear search
+     */
+    public static long linearSearchLargeText(){
         inputWords = parser.parse(LARGE_TEXT);
         scResults = new SpellCheckResult[inputWords.length];
 
@@ -82,8 +90,13 @@ public class SpellCheckBenchmark {
         }
         long end = System.currentTimeMillis();
         System.out.println("It took " + (end - start) + " ms for the linear search to complete task for large text");
+        return end - start;
     }
-    public static void binarySearchSmallText(){
+
+    /**
+     * Finds the time required to process the small text using binary search
+     */
+    public static long binarySearchSmallText(){
         inputWords = parser.parse(SMALL_TEXT);
         scResults = new SpellCheckResult[inputWords.length];
 
@@ -94,8 +107,13 @@ public class SpellCheckBenchmark {
         }
         long end = System.currentTimeMillis();
         System.out.println("It took " + (end - start) + " ms for the binary search to complete task for small text");
+        return end - start;
     }
-    public static void binarySearchLargeText(){
+
+    /**
+     * Finds the time required to process the large text using binary search
+     */
+    public static long binarySearchLargeText(){
         inputWords = parser.parse(LARGE_TEXT);
         scResults = new SpellCheckResult[inputWords.length];
 
@@ -105,5 +123,6 @@ public class SpellCheckBenchmark {
         }
         long end = System.currentTimeMillis();
         System.out.println("It took " + (end - start) + " ms for the binary search to complete task for large text");
+        return end - start;
     }
 }

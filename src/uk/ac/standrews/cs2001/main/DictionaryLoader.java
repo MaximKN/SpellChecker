@@ -9,7 +9,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 /**
- * This class provides a static method loadTheDictionary which was modified to allow user specify it is own path.
+ * Provides a static method loadTheDictionary which was modified to allow user specify it is own path.
  * <p>It reads the words from a file and returns them as an array of strings in alphabetical order.</p>
  */
 class DictionaryLoader {
@@ -17,7 +17,7 @@ class DictionaryLoader {
     public static final String DICTIONARY_PATH = "/usr/share/dict/words";
 
     /**
-     * This method loads the dictionary depending on the path specified by user.
+     * Loads the dictionary depending on the path specified by user.
      * @param isOwnPath if true, it will use path specified by user; if false, it will use default path
      * @param ownPath path that was specified by user
      * @return array of words in dictionary

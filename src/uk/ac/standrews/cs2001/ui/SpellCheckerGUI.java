@@ -7,7 +7,7 @@ import java.io.*;
 import uk.ac.standrews.cs2001.main.*;
 import uk.ac.standrews.cs2001.parser.*;
 /**
- * This class is a graphical user interface used by SpellCheckerUI. It is another extension for this project.
+ * Graphical user interface used by SpellCheckerUI. It is another extension for this project.
  */
 public class SpellCheckerGUI extends JFrame {
     private final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,6 +23,9 @@ public class SpellCheckerGUI extends JFrame {
         SwingUtilities.invokeLater(SpellCheckerGUI::new);
     }
 
+    /**
+     * Default constructor
+     */
     public SpellCheckerGUI(){
         this.redirectSystemStreams();
         this.setAppearance();
@@ -30,6 +33,10 @@ public class SpellCheckerGUI extends JFrame {
         this.addCheckButton();
         this.setVisible(true);
     }
+
+    /**
+     * Sets the appearance of the frame
+     */
     public void setAppearance(){
         this.setTitle("Spell checker");
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -37,10 +44,18 @@ public class SpellCheckerGUI extends JFrame {
         this.setSize(550, 580);
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
+
+    /**
+     * Adds the text area to the frame
+     */
     public void addTextArea(){
         this.textPane.setVisible(true);
         this.add(textPane, BorderLayout.CENTER);
     }
+
+    /**
+     * Adds the button that checks the text
+     */
     public void addCheckButton(){
         this.checkButton.setText("Check my text");
         this.checkButton.setPreferredSize(new Dimension(520, 70));
@@ -50,7 +65,7 @@ public class SpellCheckerGUI extends JFrame {
     }
 
     /**
-     * This method is used by the check button. It parses all the input text and
+     * Used by the check button. It parses all the input text and
      * then uses binary search algorithm to find their existence in the dictionary
      */
     public void check(){
@@ -65,6 +80,7 @@ public class SpellCheckerGUI extends JFrame {
 
         for (int i = 0; i < inputWords.length; i++) {
             scResults[i] = spellChecker.bsCheck(inputWords[i]);
+
             if (!scResults[i].isCorrect()){
                 StyleConstants.setForeground(style, Color.red);
                 // Change color and add to the text area
@@ -72,6 +88,8 @@ public class SpellCheckerGUI extends JFrame {
                 catch (BadLocationException e){
                     e.printStackTrace();
                 }
+                SpellCheckerSuggestion[] tmp = spellChecker.findSuggestions(inputWords[i]);
+                JOptionPane.showMessageDialog(null, "Did you mean: " + tmp[0].getWord() + " instead of " + inputWords[i]+"?");
             }
             else{
                 StyleConstants.setForeground(style, Color.blue);
@@ -89,7 +107,7 @@ public class SpellCheckerGUI extends JFrame {
     }
 
     /**
-     * This method is used to put error messages in the error text area
+     * Used to put error messages in the error text area
      * @param text text that contains errors in the program
      */
     public void updateTextArea(String text) {
@@ -97,7 +115,7 @@ public class SpellCheckerGUI extends JFrame {
     }
 
     /**
-     * This method overrides System.err and calls updateTextArea
+     * Overrides System.err and calls updateTextArea
      */
     public void redirectSystemStreams() {
         OutputStream out = new OutputStream() {

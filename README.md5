@@ -1,0 +1,8 @@
+The first practical of the CS2001 module.
+
+It includes javadoc, Apache ANT build, source code, report  
+
+There are three main methods in:
+1. SpellCheckerUI has a console based user interface and uses linear search algorithm. 
+2. SpellCheckerGUI has a graphical user interface and uses binary search algorithm.
+3. SpellCheckBenchmark has a comparator of the linear and binary searches.

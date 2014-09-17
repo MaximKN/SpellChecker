@@ -1,10 +1,12 @@
-package uk.ac.standrews.cs2001;
+package uk.ac.standrews.cs2001.ui;
 
 import java.io.IOException;
 import java.util.Scanner;
+import uk.ac.standrews.cs2001.main.*;
+import uk.ac.standrews.cs2001.parser.*;
 
 /**
- * This class contains a main method which provides the user interface to the system.
+ * Contains a main method which provides the user interface to the system.
  * @author  cs2001 student
  */
 class SpellCheckerUI {
