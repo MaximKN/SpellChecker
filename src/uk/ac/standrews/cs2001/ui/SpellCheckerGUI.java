@@ -27,7 +27,7 @@ public class SpellCheckerGUI extends JFrame {
      * Default constructor
      */
     public SpellCheckerGUI(){
-        //this.redirectSystemStreams();
+        this.redirectSystemStreams();
         this.setAppearance();
         this.addTextArea();
         this.addCheckButton();
